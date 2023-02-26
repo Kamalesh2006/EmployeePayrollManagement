@@ -50,5 +50,10 @@ public class AttendanceModel implements AttendanceModelCallBack {
 		}
 		attendanceController.checkedOutSuccessfully(employee);
 	}
+	@Override
+	public void getAttendanceList(Employee employee) {
+		LeaveTracker attendanceList = employeePayrollInstance.getLeaveTracker(employee);
+		attendanceController.attendance(attendanceList);
+	}
 
 }

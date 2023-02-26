@@ -1,6 +1,7 @@
 package com.employeepayrollmanagement.employee;
 
 import com.employeepayrollmanagement.dto.Employee;
+import com.employeepayrollmanagement.dto.PaySlip;
 import com.employeepayrollmanagement.dto.Salary;
 import com.employeepayrollmanagement.repository.EmployeePayrollDB;
 
@@ -11,13 +12,13 @@ public class EmployeeModel implements EmployeeModelCallBack {
 		this.employeeController= employeeController;
 	}
 	@Override
-	public void getSalary(Employee employee,int month) {
-		Salary salary = employeePayrollInstance.getSalary(employee,month);
-		if(salary==null) {
+	public void getPaySlip(Employee employee,int month,int year) {
+		PaySlip paySlip = employeePayrollInstance.getPaySlip(employee,month,year);
+		if(paySlip==null) {
 			employeeController.notifyError(employee,"Something went wrong");
 		}
 		else {
-			employeeController.salaryOfEmployee(employee,salary);
+			employeeController.paySlipOfEmployee(employee,paySlip);
 		}
 	}
 

@@ -4,6 +4,6 @@ import com.employeepayrollmanagement.dto.Employee;
 
 public interface EmployeeModelCallBack {
 
-	void getSalary(Employee employee, int month);
+	void getPaySlip(Employee employee, int month, int year);
 
 }

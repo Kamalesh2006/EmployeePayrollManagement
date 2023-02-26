@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.employeepayrollmanagement.dto.Employee;
 import com.employeepayrollmanagement.dto.LeaveTracker;
+import com.employeepayrollmanagement.dto.PaySlip;
 
 public interface HRModelControllerCallBack {
 
@@ -12,5 +13,7 @@ public interface HRModelControllerCallBack {
 	void employeeCheckedIn(List<Employee> employeeCheckedInList);
 
 	void leaveAppliedEmployees(List<LeaveTracker> leaveTrackerList);
+
+	void paySlipListEmployees(List<PaySlip> paySlipList);
 
 }

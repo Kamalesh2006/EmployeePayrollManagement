@@ -34,8 +34,13 @@ public class ApplyLeaveView implements ApplyLeaveViewCallBack{
 		selectDates(employee,employeeView,loginView);
 	}
 	@Override
-	public void leaveAppliedSuccessfully(Employee employee) {
-		System.out.println("Leave applied Successfully");
+	public void leaveAppliedSuccessfully(Employee employee,int date) {
+		System.out.println("Leave applied Successfully for (working dates) "+ date);
+		employeeView.employeeLogin(employee, loginView);
+	}
+	@Override
+	public void leaveAlreadyApplied(Employee employee, String msg) {
+		System.out.println(employee.getEmpID()+" "+msg);
 		employeeView.employeeLogin(employee, loginView);
 	}
 }

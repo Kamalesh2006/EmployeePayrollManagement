@@ -1,32 +1,22 @@
 package com.employeepayrollmanagement.dto;
 
-public class Salary {
-	private Employee employee;
+public class Salary extends Employee{
 	//contains the salary of the employee with tax and benefits 
 	private double basicPay;
-	private int month;
 	private double tax;
 	private double allowance;
-	private double incentives;
 	private double pf;
+	private double salaryAnnual;
 	
-	public Salary(Employee employee, double basicPay,int month, double allowance,double incentives, double pf) {
-		super();
-		this.employee = employee;
-		this.basicPay = basicPay;
-		this.setMonth(month);
+	public Salary(Employee employee,double salaryAnnual) {
+		super(employee.getEmpID(),employee.getFirst_name(),employee.getLast_name(),employee.getDob(),employee.getEmail(),employee.getDoj(),employee.isEmployer(),employee.getLeaveRemaining());
+		this.setSalaryAnnual(salaryAnnual);
+		
+		this.basicPay = salaryAnnual*0.4;
 		//tax is calculated based on if salary is above 7LPA(58333 per month), if not then no tax is deducted 
-		this.tax = basicPay>59000?basicPay*0.12:0;
-		this.allowance = allowance;
-		this.setIncentives(incentives);
-		this.pf = pf;
-	}
-	
-	public Employee getEmployee() {
-		return employee;
-	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+		this.tax = salaryAnnual>=700000?salaryAnnual*0.12:0;
+		this.allowance = salaryAnnual*0.2;
+		this.pf = salaryAnnual*0.12;
 	}
 	public double getBasicPay() {
 		return basicPay;
@@ -53,19 +43,11 @@ public class Salary {
 		this.pf = pf;
 	}
 
-	public int getMonth() {
-		return month;
+	public double getSalaryAnnual() {
+		return salaryAnnual;
 	}
 
-	public void setMonth(int month) {
-		this.month = month;
-	}
-
-	public double getIncentives() {
-		return incentives;
-	}
-
-	public void setIncentives(double incentives) {
-		this.incentives = incentives;
+	public void setSalaryAnnual(double salaryAnnual) {
+		this.salaryAnnual = salaryAnnual;
 	}
 }

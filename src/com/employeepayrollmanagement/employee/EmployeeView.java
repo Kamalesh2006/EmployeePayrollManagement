@@ -19,7 +19,7 @@ public class EmployeeView implements EmployeeViewCallBack{
 		System.out.println("Welcome "+employee.getFirst_name()+" "+employee.getLast_name());
 		System.out.println("Press 1 to Apply Leave");
 		System.out.println("Press 2 to Attendance");
-		System.out.println("Press 3 to see salary of this month (to be deposited at the end of the month)");
+		System.out.println("Press 3 to see payslip of this month (to be deposited at the end of the month)");
 		System.out.println("Press 4 to Log out");
 		int option = scanner.nextInt();
 		employeeController.decideOption(option,employee);

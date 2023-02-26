@@ -19,14 +19,15 @@ public class AttendanceView implements AttendanceViewCallBack {
 		this.login = login;
 		System.out.println("Press 1 to check-in");
 		System.out.println("Press 2 to check-out");
-		System.out.println("Press 3 to see available leaves");
-		System.out.println("Press 4 to go back");
+		System.out.println("Press 3 to see worked days");
+		System.out.println("Press 4 to see available leaves");
+		System.out.println("Press 5 to go back");
 		int option = scanner.nextInt();
 		attendanceController.decideOptions(option,employee);
 	}
 	@Override
 	public void printStatus(Employee employee, String msg) {
-		System.out.println("Employee "+employee.getEmpID() +" "+ msg);
+		System.out.println("Employee "+employee.getEmpID() +"\n"+ msg);
 		showAttendanceOptions(employee, employeeView,login);
 	}
 	@Override

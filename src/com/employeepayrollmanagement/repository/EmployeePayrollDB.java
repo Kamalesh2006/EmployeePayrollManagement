@@ -8,13 +8,15 @@ import java.util.List;
 import com.employeepayrollmanagement.dto.Credentials;
 import com.employeepayrollmanagement.dto.Employee;
 import com.employeepayrollmanagement.dto.LeaveTracker;
+import com.employeepayrollmanagement.dto.PaySlip;
 import com.employeepayrollmanagement.dto.Salary;
 
 public class EmployeePayrollDB {
 	private static EmployeePayrollDB employeePayrollInstance;
 	private List<Credentials> credentialList = new ArrayList<>();
 	private List<LeaveTracker> leaveTrackerList = new ArrayList<>();
-	private List<Salary> payslipList = new ArrayList<>();
+	private List<Salary> salaryList = new ArrayList<>();
+	private List<PaySlip> paySlipList = new ArrayList<>();
 	private EmployeePayrollDB() {
 		
 	}
@@ -35,18 +37,21 @@ public class EmployeePayrollDB {
 		credentialList.add(credential2);
 		credentialList.add(credential3);
 		credentialList.add(credential4);
-		LeaveTracker leaveTracker1 = new LeaveTracker(credential1,new ArrayList<>(),12,false,LocalTime.now());
-		LeaveTracker leaveTracker2 = new LeaveTracker(credential2,new ArrayList<>(),12,false,LocalTime.now());
-		LeaveTracker leaveTracker3 = new LeaveTracker(credential3,new ArrayList<>(),12,false,LocalTime.now());	
+		Salary salary1 = new Salary(credential1,560000);
+		Salary salary2 = new Salary(credential2,600000);
+		Salary salary3 = new Salary(credential3,750000);
+		salaryList.add(salary1);
+		salaryList.add(salary2);
+		salaryList.add(salary3);
+		LeaveTracker leaveTracker1 = new LeaveTracker(credential1);
+		LeaveTracker leaveTracker2 = new LeaveTracker(credential2);
+		LeaveTracker leaveTracker3 = new LeaveTracker(credential3);	
 		leaveTrackerList.add(leaveTracker1);
 		leaveTrackerList.add(leaveTracker2);
 		leaveTrackerList.add(leaveTracker3);
-		Salary salary1 = new Salary(credential1,30000,2,2000,0,3600);
-		Salary salary2 = new Salary(credential2,40000,2,5000,0,6400);
-		Salary salary3 = new Salary(credential3,50000,2,3500,0,5040);
-		payslipList.add(salary1);
-		payslipList.add(salary2);
-		payslipList.add(salary3);
+		paySlipList.add(new PaySlip(salary1,0));
+		paySlipList.add(new PaySlip(salary2,0));
+		paySlipList.add(new PaySlip(salary3,0));
 		
 	}
 	public Employee checkValidEmployee(String emailid, String password) {
@@ -91,12 +96,42 @@ public class EmployeePayrollDB {
 	public void addCredentials(Credentials credential) {
 		credentialList.add(credential);
 	}
-	public Salary getSalary(Employee employee, int month) {
-		for(Salary salary: payslipList) {
-			if(salary.getEmployee()==employee && salary.getMonth()==month) {
+	public Employee getEmployeeByEmpID(String empID) {
+		for(Credentials credential:credentialList) {
+			if(credential.getEmpID().equals(empID)) {
+				return credential;
+			}
+		}
+		return null;
+	}
+	public Salary getSalary(Employee employee) {
+		for(Salary salary: salaryList) {
+			if(salary.getEmpID().equals(employee.getEmpID())) {
 				return salary;
 			}
 		}
 		return null;
+	}
+	public PaySlip getPaySlip(Employee employee, int month, int year) {
+		for(PaySlip paySlip: paySlipList) {
+			if(paySlip.getSalary().getEmpID().equals(employee.getEmpID()) && paySlip.getMonth()==month && paySlip.getYear()==year) {
+				return paySlip;
+			}
+		}
+		return null;
+	}
+	public List<PaySlip> getPaySlipList(List<Employee> employeeList) {
+		List<PaySlip> paySlip = new ArrayList<>();
+		int i =0;
+		for(Employee employee: employeeList) {
+			//because the payslip contains payslip for every month of employee
+			//we want payslip of current month
+			for(PaySlip pay: paySlipList) {
+				if(pay.getSalary().getEmpID().equals(employee.getEmpID()) && pay.getMonth()==LocalDate.now().getMonthValue()) {
+					paySlip.add(pay);
+				}
+			}
+		}
+		return paySlip;
 	}
 }

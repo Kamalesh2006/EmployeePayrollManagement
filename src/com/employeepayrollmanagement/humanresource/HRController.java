@@ -7,6 +7,7 @@ import java.util.List;
 import com.employeepayrollmanagement.dto.Credentials;
 import com.employeepayrollmanagement.dto.Employee;
 import com.employeepayrollmanagement.dto.LeaveTracker;
+import com.employeepayrollmanagement.dto.PaySlip;
 
 public class HRController implements HRControllerCallBack, HRModelControllerCallBack {
 	private HRViewCallBack hrView;
@@ -25,7 +26,13 @@ public class HRController implements HRControllerCallBack, HRModelControllerCall
 			hrModel.getLeaveAppliedEmployees();
 			break;
 		case 3:
+			hrView.callToModifySalary();
+			break;
+		case 4:
 			hrView.registerEmployee();
+			break;
+		case 5:
+			hrView.callToLoginView();
 			break;
 		}
 	}
@@ -87,6 +94,21 @@ public class HRController implements HRControllerCallBack, HRModelControllerCall
 		else {
 			hrView.printStatus("Employees added successfully to the database");
 		}
+	}
+	@Override
+	public void decideToApproveLeave(boolean leaveApproval, List<Employee> employeeList, List<LeaveTracker> leaveTrackerList) {
+		if(leaveApproval) {
+			//leave approval is granted
+			hrModel.approveLeave(employeeList,leaveTrackerList);
+		}else {
+			//leave approval is failed
+			hrView.printStatus("Leave has not been granted");
+		}
+	}
+	@Override
+	public void paySlipListEmployees(List<PaySlip> paySlipList) {
+		//this contains the updated employees paylist for those who have applied for leave
+		hrView.leaveApproved(paySlipList);
 	}
 	
 	

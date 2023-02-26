@@ -13,4 +13,6 @@ public interface AttendanceModelCallBack {
 
 	void checkout(Employee employee, LocalTime time2);
 
+	void getAttendanceList(Employee employee);
+
 }
