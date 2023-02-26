@@ -16,6 +16,7 @@ public class LoginController implements LoginControllerCallBack, LoginModelContr
 	public void verifyUser(String emailid, String password) {
 		Pattern p = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9]*@[a-zA-Z0-9]+[.][in]");
 		Matcher m = p.matcher(emailid);
+		//password validation shall be added
 //		Pattern pswd = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
 //		Matcher mPswd = p.matcher(password);
 		if(m.find()) {

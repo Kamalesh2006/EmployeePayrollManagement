@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LeaveTracker {
+	//Leave application and check in status are recorded by this application
 	private Employee employee;
 	private List<LocalDate> workingDays;
 	private double noOfDaysWorked;

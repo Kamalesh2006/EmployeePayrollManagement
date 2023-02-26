@@ -58,6 +58,7 @@ public class HRController implements HRControllerCallBack, HRModelControllerCall
 		hrView.showLeaveAppliedEmployees(employeeList,availableHolidays,leaveTrackerList);
 		
 	}
+	// this method will generate employee id for new email id but for email that already exist in the database it will return null
 	@Override
 	public String generateEmpID(String email,int count) {
 		if(hrModel.isEmailNew(email)) {
@@ -76,6 +77,7 @@ public class HRController implements HRControllerCallBack, HRModelControllerCall
 		List<Employee> notAddedEmployeeList = new ArrayList<>();
 		List<Credentials> addedEmployeeList = new ArrayList<>();
 		for(int i =0;i<newEmployeeList.size();i++) {
+			// checking if the generateID method created new employee id
 			if(newEmployeeList.get(i).getEmail()==null) {
 				notAddedEmployeeList.add(newEmployeeList.get(i));
 			}

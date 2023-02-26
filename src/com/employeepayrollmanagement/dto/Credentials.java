@@ -3,6 +3,7 @@ package com.employeepayrollmanagement.dto;
 import java.time.LocalDate;
 
 public class Credentials extends Employee {
+	//it contains the password 
 	private String password;
 	public Credentials(Employee emp,String password) {
 		super(emp.getEmpID(),emp.getFirst_name(),emp.getLast_name(),emp.getDob(),emp.getEmail(),emp.getDoj(),emp.isEmployer(),emp.getLeaveRemaining());

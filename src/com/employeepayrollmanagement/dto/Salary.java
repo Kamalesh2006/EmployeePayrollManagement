@@ -1,7 +1,7 @@
 package com.employeepayrollmanagement.dto;
 
 public class Salary extends Employee{
-	//contains the salary of the employee with tax and benefits 
+	//contains the salary(Annual) of the employee with tax and benefits 
 	private double basicPay;
 	private double tax;
 	private double allowance;

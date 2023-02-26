@@ -3,6 +3,7 @@ package com.employeepayrollmanagement.dto;
 import java.time.LocalDate;
 
 public class PaySlip {
+	//contains the details of monthly salary received by the employee
 	private int month;
 	private int year;
 	private Salary salary;

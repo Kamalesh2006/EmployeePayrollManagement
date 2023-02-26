@@ -24,6 +24,7 @@ public class HRView implements HRViewCallBack {
 		hrController = new HRController(this);
 	}
 
+	// This is the first page the employer will see after login
 	public void hrloginpage(LoginView login) {
 		this.login = login;
 		System.out.println("Press 1 to see Employees who are checked in");
@@ -36,6 +37,7 @@ public class HRView implements HRViewCallBack {
 	}
 
 	@Override
+	// registering employee
 	public void registerEmployee() {
 		System.out.println("Welcome to Employee registration:");
 		System.out.println("Enter the no of new Employees you want to add");
@@ -72,6 +74,7 @@ public class HRView implements HRViewCallBack {
 	}
 
 	@Override
+	// to see all the employee who are checked in
 	public void employeeCheckedIn(List<Employee> employeeCheckedInList) {
 		System.out.println("Employees Checked In Today:" + LocalDate.now() + " List");
 		for (Employee employee : employeeCheckedInList) {
@@ -97,7 +100,7 @@ public class HRView implements HRViewCallBack {
 			}
 			System.out.println("Approve leave?(True/False)");
 			boolean leaveApproval = scanner.nextBoolean();
-			hrController.decideToApproveLeave(leaveApproval,employeeList,leaveTrackerList);
+			hrController.decideToApproveLeave(leaveApproval, employeeList, leaveTrackerList);
 		}
 		hrloginpage(login);
 	}
@@ -131,11 +134,15 @@ public class HRView implements HRViewCallBack {
 
 	@Override
 	public void leaveApproved(List<PaySlip> paySlipList) {
-		for(PaySlip payslip:paySlipList) {
-			double monthSalary = ((payslip.getSalary().getBasicPay())/12)+((payslip.getSalary().getAllowance())/12)-((payslip.getSalary().getTax())/12)-((payslip.getSalary().getPf())/12);
-			System.out.println(payslip.getSalary().getEmpID()+" Month:"+payslip.getMonth()+" Year:"+payslip.getYear());
-			System.out.println("MonthSalary:(incentives & loss of pay excluded)"+(monthSalary)+"\tIncentives:"+payslip.getIncentives());
-			System.out.println("Loss of Pay:"+payslip.getLossOfPay());
+		for (PaySlip payslip : paySlipList) {
+			double monthSalary = ((payslip.getSalary().getBasicPay()) / 12)
+					+ ((payslip.getSalary().getAllowance()) / 12) - ((payslip.getSalary().getTax()) / 12)
+					- ((payslip.getSalary().getPf()) / 12);
+			System.out.println(
+					payslip.getSalary().getEmpID() + " Month:" + payslip.getMonth() + " Year:" + payslip.getYear());
+			System.out.println("MonthSalary:(incentives & loss of pay excluded)" + (monthSalary) + "\tIncentives:"
+					+ payslip.getIncentives());
+			System.out.println("Loss of Pay:" + payslip.getLossOfPay());
 		}
 	}
 }
