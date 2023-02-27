@@ -74,6 +74,8 @@ public class HRModel implements HRModelCallBack {
 			Salary salary = employeePayrollDB.getSalary(employeeList.get(i));
 			//we have to check the no of leave available for the employee
 			int lossOfPayDays =0;
+			System.out.println("Loss of pay days "+leaveTrackerList.get(i).getNoOfDaysLeaveRequired());
+			System.out.println("Leave remaininig"+salary.getLeaveRemaining());
 			if(leaveTrackerList.get(i).getNoOfDaysLeaveRequired()>salary.getLeaveRemaining()) {
 				lossOfPayDays = Math.abs(salary.getLeaveRemaining()-leaveTrackerList.get(i).getNoOfDaysLeaveRequired());
 				leaveTrackerList.get(i).setLeaveApplyStatus(true);

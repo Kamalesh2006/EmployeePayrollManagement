@@ -18,7 +18,7 @@ public class ApplyLeaveModel implements ApplyLeaveModelCallBack {
 		// checking if the employee has already applied for leave and also the leave
 		// days are higher than one
 		if (!leaveTracker.isLeaveApplyStatus() && date > 0) {
-			leaveTracker.setNoOfDaysLeaveRequired(leaveTracker.getNoOfDaysLeaveRequired() - date);
+			leaveTracker.setNoOfDaysLeaveRequired(date);
 			// the employee has applied for leave
 			leaveTracker.setLeaveApplyStatus(true);
 			applyLeaveController.leaveAppliedSuccessfully(employee, date);

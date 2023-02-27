@@ -35,7 +35,7 @@ public class ModifySalaryView implements ModifySalaryViewCallBack {
 
 	@Override
 	public void employeeModifySalary(Employee employee) {
-		System.out.println("You have chosen Emp ID:" + employee.getEmpID() + " Emp Name" + employee.getFirst_name()
+		System.out.println("You have chosen Emp ID:" + employee.getEmpID() + " Emp Name: " + employee.getFirst_name()
 				+ " " + employee.getLast_name());
 		System.out.println("Choose what to do");
 		System.out.println("1) To increase salary for " + employee.getEmpID());

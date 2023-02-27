@@ -92,11 +92,11 @@ public class HRView implements HRViewCallBack {
 		if (employeeList.size() == 0) {
 			System.out.println("No Employees applied for leave");
 		} else {
-			System.out.println("SNo  Employee id\tEmployee Name\tEmployee Available Holidays");
+			System.out.println("SNo  Employee id\tEmployee Name\tEmployee Applied days\tAvailable Holidays");
 			for (int i = 0; i < employeeList.size(); i++) {
 				Employee employee = employeeList.get(i);
 				System.out.println((i + 1) + "  " + employee.getEmpID() + "\t" + employee.getFirst_name() + " "
-						+ employee.getLast_name() + " " + availableHolidays[i]);
+						+ employee.getLast_name() + "\tEmployee Applied days:"+leaveTrackerList.get(i).getNoOfDaysLeaveRequired() +"\t"+ availableHolidays[i]);
 			}
 			System.out.println("Approve leave?(True/False)");
 			boolean leaveApproval = scanner.nextBoolean();
@@ -129,6 +129,7 @@ public class HRView implements HRViewCallBack {
 
 	@Override
 	public void callToModifySalary() {
+		modifySalaryView= new ModifySalaryView();
 		modifySalaryView.modifySalaryPage(this, login);
 	}
 
